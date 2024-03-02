@@ -16,6 +16,7 @@ import {computeHash} from "./hash.js";
 import {parseInfo} from "./info.js";
 import type {FileReference, ImportReference, PendingTranspile, Transpile} from "./javascript.js";
 import {transpileJavaScript} from "./javascript.js";
+import {transpileSquint} from "./squint.js";
 import {transpileTag} from "./tag.js";
 import {resolvePath} from "./url.js";
 
@@ -95,6 +96,8 @@ function getLiveSource(content: string, tag: string): string | undefined {
     ? transpileTag(content, "dot", false)
     : tag === "mermaid"
     ? transpileTag(content, "await mermaid", false)
+    : tag === "cljs"
+    ? transpileSquint(content)
     : undefined;
 }
 
